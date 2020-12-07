@@ -1,56 +1,33 @@
-//your variable declarations here
-Spaceship bob = new Spaceship();
-Star[] nightSky = new Star[200];
-ArrayList <Asteroid> Bunch;
-//Asteroid billy = new Asteroid(0);
+class Asteroid extends Floater{
+  
 
-public void setup(){
-  size(500,500);
-  background(0);
-  Bunch = new ArrayList <Asteroid>();
-  bob.accelerate(0.2);
-  for (int i = 0; i < nightSky.length; i++){
-    nightSky[i] = new Star();
+  double rodSpeed = (int)(Math.random()*20 -10);
+  public Asteroid(){
+    myColor = 115;   
+    myCenterX = (int)(Math.random()*500);
+    myCenterY = (int)(Math.random()*500);
+    myXspeed = (double)(Math.random()*2 -1);
+    myYspeed = (double)(Math.random()*2 -1);
+    myPointDirection = 1;
+    //double rotSpeed = (int)(Math.random()*20 -10);
+    corners = 6;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners = new int[] {-11, 7, 13, 6, -11, -5};
+    yCorners = new int[] {-8, -8, 0, 10, 8, 0};
   }
-  for (int i = 0; i < 10; i++){
-    Bunch.add(new Asteroid());
-  }
-}
-public void draw(){
-  background(0);
-  bob.move();
-  bob.show();
-  for (int i = 0; i < nightSky.length; i++){
-    nightSky[i].show();
-  }
-  for (int i = 0; i < Bunch.size(); i++){
-    Bunch.get(i).move();
-    Bunch.get(i).show();
-    if (dist((int)Bunch.get(i).getCenterX(), (int)Bunch.get(i).getCenterY(), (int)bob.getCenterX(), (int)bob.getCenterY())<20){
-      Bunch.remove(i);
+  
+  public void move(){
+    turn(rodSpeed);
+    super.move();
+    
     }
-  }
-}
-
-
-public void keyPressed() {
-  if(key == 'w'){
-    bob.accelerate(0.2);
-    bob.accelerate(0.2);
+  
+  public double getCenterX(){
+    return myCenterX;
   }
   
-  if(key == 'r') {
-    bob.setXspeed(0);
-    bob.setYspeed(0);
-    bob.setCenterX((int)(Math.random()*500));
-    bob.setCenterY((int)(Math.random()*500));
-  }
-  
-  if(key == 'd') {
-    bob.turn(20);
-  }
-  
-  if(key == 'a') {
-    bob.turn(-20);
+  public double getCenterY(){
+    return myCenterY;
   }
 }
