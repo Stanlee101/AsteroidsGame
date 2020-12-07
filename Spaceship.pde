@@ -19,32 +19,32 @@ class Spaceship extends Floater
     myCenterY += myYspeed;     
 
     //wrap around screen    
-    if(myCenterX >width)
-    {     
+    if(myCenterX >width){     
       myCenterX = 0;    
-    }    
-    else if (myCenterX<0)
-    {     
+    }   
+    
+    else if (myCenterX<0){     
       myCenterX = width;    
     }    
-    if(myCenterY >height)
-    {    
+    
+    if(myCenterY >height){    
       myCenterY = 0;    
     } 
     
     else if (myCenterY < 0)
     {     
       myCenterY = height;    
-    }   
+    }  
   }
+  
   
 public void turn (double degreesOfRotation) {
     //rotates the floater by a given number of degrees    
     myPointDirection+=degreesOfRotation;   
   }
   
-   public void accelerate (double dAmount)   
-  {          
+   public void accelerate (double dAmount)   {
+     
     //convert the current direction the floater is pointing to radians    
     double dRadians =myPointDirection*(Math.PI/180);     
     //change coordinates of direction of travel    
@@ -66,5 +66,13 @@ public void turn (double degreesOfRotation) {
   
   public void setCenterY(double y){
     myCenterY = y;
+  }
+  
+  public double getCenterX(){
+    return myCenterX;
+  }
+  
+  public double getCenterY(){
+    return myCenterY;
   }
 }
