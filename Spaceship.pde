@@ -68,11 +68,13 @@ public void turn (double degreesOfRotation) {
     myCenterY = y;
   }
   
-  public double getCenterX(){
-    return myCenterX;
-  }
+  public double getCenterX(){return myCenterX;}
   
-  public double getCenterY(){
-    return myCenterY;
-  }
+  public double getCenterY(){return myCenterY;}
+  
+  public double getXspeed(){return myXspeed;}
+  
+  public double getYspeed(){return myYspeed;}
+  
+  public double getPointDirection(){return myPointDirection;}
 }
