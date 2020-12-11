@@ -17,7 +17,8 @@ class Bullet extends Floater {
   
   public void move(){
      myCenterX += myXspeed;    
-    myCenterY += myYspeed;  
+    myCenterY += myYspeed;
+    super.accelerate(0.1);
   }
    
   
