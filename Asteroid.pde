@@ -1,33 +1,80 @@
-class Asteroid extends Floater{
-  
-
-  double rodSpeed = (int)(Math.random()*20 -10);
-  public Asteroid(){
-    myColor = 115;   
-    myCenterX = (int)(Math.random()*500);
-    myCenterY = (int)(Math.random()*500);
-    myXspeed = (double)(Math.random()*2 -1);
-    myYspeed = (double)(Math.random()*2 -1);
-    myPointDirection = 1;
-    //double rotSpeed = (int)(Math.random()*20 -10);
-    corners = 6;
-    xCorners = new int[corners];
-    yCorners = new int[corners];
-    xCorners = new int[] {-11, 7, 13, 6, -11, -5};
-    yCorners = new int[] {-8, -8, 0, 10, 8, 0};
+class Spaceship extends Floater  
+{   
+  public Spaceship(){
+  corners = 4;  //the number of corners, a triangular floater has 3   
+  xCorners = new int[corners];
+  yCorners = new int[corners];
+  xCorners = new int[] {-8, 16, -8, -2};
+  yCorners = new int[] {-8, 0, 8, 0};
+  myColor = 255;   
+  myCenterX = 200; 
+  myCenterY = 200; //holds center coordinates   
+  myXspeed = 1;
+  myYspeed = 1; //holds the speed of travel in the x and y directions   
+  myPointDirection = 0; //holds current direction the ship is pointing in degrees
   }
   
   public void move(){
-    turn(rodSpeed);
-    super.move();
+    myCenterX += myXspeed;    
+    myCenterY += myYspeed;     
+
+    //wrap around screen    
+    if(myCenterX >width){     
+      myCenterX = 0;    
+    }   
     
-    }
-  
-  public double getCenterX(){
-    return myCenterX;
+    else if (myCenterX<0){     
+      myCenterX = width;    
+    }    
+    
+    if(myCenterY >height){    
+      myCenterY = 0;    
+    } 
+    
+    else if (myCenterY < 0)
+    {     
+      myCenterY = height;    
+    }  
   }
   
-  public double getCenterY(){
-    return myCenterY;
+  
+public void turn (double degreesOfRotation) {
+    //rotates the floater by a given number of degrees    
+    myPointDirection+=degreesOfRotation;   
   }
+  
+   public void accelerate (double dAmount)   {
+     
+    //convert the current direction the floater is pointing to radians    
+    double dRadians =myPointDirection*(Math.PI/180);     
+    //change coordinates of direction of travel    
+    myXspeed += ((dAmount) * Math.cos(dRadians));    
+    myYspeed += ((dAmount) * Math.sin(dRadians));       
+  }
+  
+  public void setXspeed(double x) {
+    myXspeed = x;
+  }
+  
+  public void setYspeed(double y) {
+    myYspeed = y;
+  }
+  
+  public void setCenterX(double x){
+    myCenterX = x;
+  }
+  
+  public void setCenterY(double y){
+    myCenterY = y;
+  }
+  
+  public double getCenterX(){return myCenterX;}
+  
+  public double getCenterY(){return myCenterY;}
+  
+  public double getXspeed(){return myXspeed;}
+  
+  public double getYspeed(){return myYspeed;}
+  
+  public double getPointDirection(){return myPointDirection;}
 }
